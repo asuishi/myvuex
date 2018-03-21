@@ -1,0 +1,12 @@
+{
+  "name": "myvuex",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c --watch"
+  },
+  "devDependencies": {
+    "rollup": "^0.55.3"
+  }
+}

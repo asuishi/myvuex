@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Vuex Examples</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="../dist/bundle.js"></script>
+</head>
+
+<body style="padding: 0 20px">
+  <div id="app">
+    <p>{{ count }}</p>
+    <button v-on:click="reverseMessage">add</button>
+    <button v-on:click="reverseMessageAync">addAync</button>
+    <p>{{ doneTodosCount }}</p>
+  </div>
+
+  <script>
+    Vue.use(Vuex)
+    const store = new Vuex.Store({
+      state: {
+        count: 0,
+        todos: [
+          { id: 1, text: '...', done: true },
+          { id: 2, text: '...', done: false }
+        ]
+      },
+      getters: {
+        doneTodosCount: state => {
+          return state.todos.filter(todo => todo.done).length
+        }
+      },
+      mutations: {
+        increment(state) {
+          state.count++
+        }
+      },
+      actions: {
+        incrementAsync({ commit }) {
+          setTimeout(() => {
+            commit('increment')
+          }, 1000)
+        }
+      }
+    })
+    var app5 = new Vue({
+      el: '#app',
+      store,
+      data: {
+      },
+      computed: {
+        count() {
+          return this.$store.state.count
+        },
+        doneTodosCount () {
+          return this.$store.getters.doneTodosCount
+        }
+      },
+      methods: {
+        reverseMessage: function () {
+          this.$store.commit('increment')
+        },
+        reverseMessageAync: function () {
+          this.$store.dispatch('incrementAsync')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
