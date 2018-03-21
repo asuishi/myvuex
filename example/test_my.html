@@ -12,8 +12,6 @@
   <div id="app">
     <p>{{ count }}</p>
     <button v-on:click="reverseMessage">add</button>
-    <button v-on:click="reverseMessageAync">addAync</button>
-    <p>{{ doneTodosCount }}</p>
   </div>
 
   <script>
@@ -26,21 +24,9 @@
           { id: 2, text: '...', done: false }
         ]
       },
-      getters: {
-        doneTodosCount: state => {
-          return state.todos.filter(todo => todo.done).length
-        }
-      },
       mutations: {
         increment(state) {
           state.count++
-        }
-      },
-      actions: {
-        incrementAsync({ commit }) {
-          setTimeout(() => {
-            commit('increment')
-          }, 1000)
         }
       }
     })
@@ -52,17 +38,11 @@
       computed: {
         count() {
           return this.$store.state.count
-        },
-        doneTodosCount () {
-          return this.$store.getters.doneTodosCount
         }
       },
       methods: {
         reverseMessage: function () {
           this.$store.commit('increment')
-        },
-        reverseMessageAync: function () {
-          this.$store.dispatch('incrementAsync')
         }
       }
     })
