@@ -83,6 +83,7 @@ function resetStoreVM(store, state) {
   })
   enableStrictMode(store)
 }
+
 function installModule(store, rootState, module) {
   const {
     state,
