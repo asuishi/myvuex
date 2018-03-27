@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Vuex Examples</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="../src/step2.js"></script>
+</head>
+
+<body style="padding: 0 20px">
+  <div id="app">
+    <p>{{ count }}</p>
+    <button v-on:click="reverseMessage">add</button>
+  </div>
+
+  <script>
+    install(Vue) // 执行全局混入
+    const store = new Store({
+      state: {
+        count: 0
+      },
+      mutations: {
+        increment(state) {
+          state.count++
+        }
+      }
+    })
+    var app = new Vue({
+      el: '#app',
+      store,
+      data: {
+      },
+      computed: {
+        count() {
+          return this.$store.state.count
+        }
+      },
+      methods: {
+        reverseMessage: function () {
+          this.$store.commit('increment')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
