@@ -1,12 +1,4 @@
-/**
- * 通用函数
- */
 
-function assert(conditon, msg) {
-  if (!conditon) {
-    throw new Error(`[Vuex] ${msg}`)
-  }
-}
 let innerVue
 
 class Store {
