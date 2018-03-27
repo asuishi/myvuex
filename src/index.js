@@ -12,9 +12,9 @@ class Store {
     this._mutations = Object.create(null)
 
     const store = this
-    const {  commit } = this
-    this.dispatch = function boundDispatch(type, payload) {
-      return dispatch.call(store, type, payload)
+    const { commit } = this
+    this.commit = function boundDispatch(type, payload) {
+      return commit.call(store, type, payload)
     }
     installModule(this, state, options)
     resetStoreVM(this, state)
